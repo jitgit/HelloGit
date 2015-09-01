@@ -50,15 +50,14 @@ find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\
 ### Process & User
 |Example           |Comments  |
 |:-------------:| -----:|
-| psfiles <pid>|List Open Files for Process|
-| lsof <pid>|lsof command list open files under all Linux distributions or UNIX like operating system|
+| psfiles pid|List Open Files for Process|
+| lsof pid|lsof command list open files under all Linux distributions or UNIX like operating system|
 |fuser -u /path_to/file|finding user, processes using a file|
 |fuser -fu .|The following command writes to standard output the process IDs of processes that are using the current directory|
-
+|'prstat -u gemds' |List the process & their usage by user gemds|
 
 
 ### Sundry
 |Example           |Comments  |
 |:-------------:| -----:|
-| lsof <pid>|lsof command list open files under all Linux distributions or UNIX like operating system|
-|'prstat -u gemds' |List the process & their usage by user gemds|
+|TBA|TBA|
