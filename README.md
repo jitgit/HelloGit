@@ -7,8 +7,23 @@ Learning code
 
 
 #Unix Commands
-### xargs
+### find
 
+| Example           | Comments  |
+|:-------------:| -----:|
+|find <dir> -type d|For listing only directories|
+|find <dir> -type f |For listing all the file in the <dir> and its subdirecotries|
+|find <dir> -type f -name <filename>|For listing all the file with name <filename> in the <dir> and its subdirecotries|
+|find . -mtime 0  |find files modified between now and 1 day ago ,# (i.e., within the past 24 hours)|
+|find . -mtime -1|find files modified less than 1 day ago # (i.e., within the past 24 hours, as before)|
+|find . -mtime 1   |find files modified between 24 and 48 hours ago|
+|find . -mtime +1|find files modified more than 48 hours ago|
+|find . -mmin +5 -mmin -10|find files modified between   # 6 and 9 minutes ago|
+|find . -name foo\*bar|find current directory down for foo*bar|   
+|find . -type d -empty -delete|delete all empty directories using find only|
+|find . -exec grep -q "searchstring" '{}' \; -print|All files that contain the string 'searchstring'|
+
+### xargs
 
 | Example           | Comments  |
 |:-------------:| -----:|
