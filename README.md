@@ -17,13 +17,6 @@ Learning code
 |find . -type d -empty -delete|delete all empty directories using find only|
 
 
-### Sundry
-|Example           |Comments  |
-|:-------------:| -----:|
-| lsof <pid>|lsof command list open files under all Linux distributions or UNIX like operating system|
-|'prstat -u gemds' |List the process & their usage by user gemds|
-
-
 ### Find & AWK
 
 Print friendly disk usage of current directory
@@ -39,3 +32,8 @@ find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\
 
 ```
 
+### Sundry
+|Example           |Comments  |
+|:-------------:| -----:|
+| lsof <pid>|lsof command list open files under all Linux distributions or UNIX like operating system|
+|'prstat -u gemds' |List the process & their usage by user gemds|
