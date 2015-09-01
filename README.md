@@ -22,3 +22,20 @@ Learning code
 |:-------------:| -----:|
 | lsof <pid>|lsof command list open files under all Linux distributions or UNIX like operating system|
 |'prstat -u gemds' |List the process & their usage by user gemds|
+
+
+### Find & AWK
+
+Print friendly disk usage of current directory
+
+```
+# Print file size of each file
+find . -type f  |xargs ls -ltr | awk '{ total += $5;  print $5 "-------------" $9  "  :" total } END { print "Total size:\n" (total) " bytes\n" (total/1024) " KB\n" (total/(1024*1024)) " MB\n" (total/(1024*1024*1024)) " GB "  }'
+
+# Just print disk usage
+find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\n" (total) " bytes\n" (total/1024) " KB\n" (total/(1024*1024)) " MB\n" (total/(1024*1024*1024)) " GB "  }'
+
+
+
+```
+
