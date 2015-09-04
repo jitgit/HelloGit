@@ -61,3 +61,9 @@ find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\
 |Example           |Comments  |
 |:-------------:| -----:|
 |TBA|TBA|
+
+
+
+### Finance
+
+US Job data for last month comes on first friday or may be 4 of every month.
