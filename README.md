@@ -60,7 +60,7 @@ find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\
 ### Sundry
 |Example           |Comments  |
 |:-------------:| -----:|
-|ypcat hosts | grep 'IP Address/hostname'|Use for finding hostname based on ip or vice-versa |
+|ypcat hosts \| grep 'IP Address/hostname'|Use for finding hostname based on ip or vice-versa |
 
 
 
