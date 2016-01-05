@@ -27,8 +27,8 @@ Learning code
 
 | Example           | Comments  |
 |:-------------:| -----:|
-| find / -name *.mp3 -type f -print | xargs tar -cvzf mp3s.tar.gz		|zipping all the *.mp3 file to a tar file|
-| find -type d -empty | xargs -t rm -rvf		| delete all empty directories using xargs|
+| find / -name *.mp3 -type f -print \| xargs tar -cvzf mp3s.tar.gz		|zipping all the *.mp3 file to a tar file|
+| find -type d -empty \| xargs -t rm -rvf		| delete all empty directories using xargs|
 |find . -type d -empty -delete|delete all empty directories using find only|
 
 
