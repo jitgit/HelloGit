@@ -62,6 +62,8 @@ find . -type f  |xargs ls -ltr | awk '{ total += $5; } END { print "Total size:\
 |:-------------:| -----:|
 |ypcat hosts \| grep 'IP Address/hostname'|Use for finding hostname based on ip or vice-versa |
 |ypcat -k passwd \|grep -i 'user_account| To know the details of unix account|
+|showmount -a <Filer host>|Will show all the mountpoint from this filers|
+|nslookup hostname or alias| give you the IP address or hostname|
 
 
 ### Finance
