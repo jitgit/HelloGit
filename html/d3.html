@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery Adventure</title>
+	<script type="text/javascript" src="/lib/d3.js"></script>
+	<script type="text/javascript" src="/lib/jquery.js"></script>
+	<script type="text/javascript">
+
+		$('document').ready(function(){
+			$('#target').on('click',function buttonClick(){
+				var data = [ {x:100,y:100,color:'blue'},
+				{x:200,y:200,color:'green'},
+				{x:300,y:300,color:'black'}];
+				var svg = d3.select('svg');
+				svg.attr('width',500).attr('height',500);
+				var circles = svg.selectAll('circle').data(data);
+				//circles.exit.remove();
+				circles.attr('cx',function(d,i){
+					return d.x;
+				})
+				.attr('cy',function(d,i){
+					return d.y;
+				})
+				.attr('r',function(d,i){
+					return 40;
+				})
+				.style('fill',function (d,i){
+					console.log('color:'+d.color)
+					return d.color;
+				});
+				//circles.exit().remove();
+
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<div>
+		<button id="target">
+			Click here
+		</button>
+		<br>
+		<svg id='container' width=800 height=500 style='fill:black;'>
+			<circle cx="100" cy="100" r="40" style="fill:blck;"></circle>
+			<circle cx="200" cy="200" r="40" style="fill:green;"></circle>
+			<circle cx="300" cy="300" r="40" style="fill:yellow;"></circle>
+			<circle cx="400" cy="400" r="40" style="fill:steelblue;"></circle>		
+		</svg>
+	</div>
+</body>
+</html>
