@@ -1,0 +1,13 @@
+function MyClassA() {}
+MyClassA.prototype = {
+    methodA: function() {
+        console.log("Method A ");
+        ReactDOM.render(
+            React.createElement('h1', null, 'Hello, world!'),
+            document.getElementById('content')
+        );
+    }
+};
+
+
+module.exports = MyClassA;
