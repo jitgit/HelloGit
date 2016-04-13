@@ -1,0 +1,17 @@
+{
+  "name": "hello-web",
+  "version": "0.0.1",
+  "description": "Hello Web",
+  "main": "hello-web.js",
+  "private": true,
+  "devDependencies": {
+    "jquery": "HTML-mirrors/jquery#1.11.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
