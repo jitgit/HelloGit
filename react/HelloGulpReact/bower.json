@@ -1,0 +1,16 @@
+{
+  "name": "hello-gulp-react",
+  "version": "0.0.1",
+  "description": "Hello Gulp Reacy, Meet bower",
+  "private": true,
+  "devDependencies": {
+    "jquery": "HTML-mirrors/jquery#1.11.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
