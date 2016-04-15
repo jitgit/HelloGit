@@ -2,8 +2,8 @@ var React = require('react');
 
 function fetchUsers(cb) {
     setTimeout(function () {
-        cb([{name: 'Dev'}, {name: 'Devd'},{name: 'JP'}]);
-    }, 1000);
+        cb([{id: 1, name: 'Dev'}, {id: 2, name: 'Devd'}, {id: 3, name: 'JP'}]);
+    }, 500);
 }
 
 var HelloWorldTitle = React.createClass({
@@ -22,8 +22,8 @@ var HelloWorldTitle = React.createClass({
             });
         });
     },
-    onClickListener:function(clickedUser){
-        console.log('--------> clickedUser: ',clickedUser);
+    onClickListener: function (clickedUser) {
+        console.log('--------> clickedUser: ', clickedUser);
     },
     render: function () {
         var self = this;
