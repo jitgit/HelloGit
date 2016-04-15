@@ -1,54 +1,35 @@
+'use strict';
+
 var gulp = require('gulp');
-var browserify = require('gulp-browserify');
-var reactify = require('reactify');
-var concat = require('gulp-concat');
+var scriptTask = require('./src/sdk/scriptTask')(gulp);
+var assetsTask = require('./src/sdk/assetsTask')(gulp);
+//var liveReloadTask = require('./src/sdk/liveReloadTask')(gulp);
 var clean = require('gulp-clean');
-var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var gulpSequence = require('gulp-sequence');
-var path = require('path');
-var less = require('gulp-less');
-var plumber = require('gulp-plumber');
+
 
 gulp.task('clean', function () {
     return gulp.src('./build/', {force: true})
         .pipe(clean());
 });
-
-THIRD_PARTY_LIBS = ['bower_components/jquery/dist/jquery.js'];
+var THIRD_PARTY_LIBS = ['bower_components/jquery/dist/jquery.js'];
 gulp.task('third-party', function () {
     return gulp.src(THIRD_PARTY_LIBS)
         .pipe(concat('external-libs.js'))
         .pipe(gulp.dest('./build/'));
 });
 // Basic usage
-gulp.task('scripts', function () {
-    // Single entry point to browserify
-    return gulp.src('src/scripts/ApplicationBootStrap.js')
-        .pipe(plumber())
-        .pipe(browserify({
-            nobuiltins: 'events querystring',
-            transform: [reactify], // We want to convert JSX to normal javascript
-            debug: true // Gives us sourcemapping
-        }))
-        //.pipe(uglify())
-        .pipe(gulp.dest('./build/'));
-});
+gulp.task('scripts', scriptTask.browserifyModuleTask(['main-1.js', 'main-2.js'], 'src/scripts/app/'));
+gulp.task('less', assetsTask.cssTask('./src/**/*.less', 'app.css'));
+gulp.task('html', assetsTask.htmlTask('src/**/*.html'));
 
-gulp.task('less', function () {
-    return gulp.src('./src/**/*.less')
-        .pipe(less({
-            paths: [path.join(__dirname, 'less', 'includes')]
-        }))
-        .pipe(concat('app.css'))
-        .pipe(gulp.dest('./build/'));
-});
 
-// Basic usage
-gulp.task('html', function () {
-    return gulp.src('src/**/index.html')
-        .pipe(gulp.dest('./build/'));
-});
+//TODO
+//var liveReloadTask = require('./src/sdk/liveReloadTask')(gulp, appPort, reloadPort);
+//gulp.task('build-re-load', liveReloadTask.serverAndLiveReload(['html', 'scripts', 'less']));
+
 var reloadPort = 9092;
 var appPort = 9090;
 gulp.task('express-server', function () {
@@ -77,7 +58,7 @@ function notifyLiveReload() {
     //console.log(fileName);
     tinylr.changed({
         body: {
-            files: ['src\index.html']
+            files: ['src\*.html']
         }
     });
 }
