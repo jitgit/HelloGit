@@ -5,7 +5,6 @@ var scriptTask = require('./src/sdk/scriptTask')(gulp);
 var assetsTask = require('./src/sdk/assetsTask')(gulp);
 //var liveReloadTask = require('./src/sdk/liveReloadTask')(gulp);
 var clean = require('gulp-clean');
-var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var gulpSequence = require('gulp-sequence');
 
@@ -15,13 +14,11 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 var THIRD_PARTY_LIBS = ['bower_components/jquery/dist/jquery.js'];
-gulp.task('third-party', function () {
-    return gulp.src(THIRD_PARTY_LIBS)
-        .pipe(concat('external-libs.js'))
-        .pipe(gulp.dest('./build/'));
-});
+gulp.task('third-party', scriptTask.thirdPartyDependencyTask(THIRD_PARTY_LIBS));
+gulp.task('test-libs', scriptTask.testLibs(['src/sdk/jasmine-2.4.1/**.**']));
 // Basic usage
-gulp.task('scripts', scriptTask.browserifyModuleTask(['main-1.js', 'main-2.js'], 'src/scripts/app/'));
+gulp.task('scripts', scriptTask.browserifyModuleTask(['main-1.js', 'main-2.js', 'counter/counter.js', 'todo/TodoApp.js'], 'src/scripts/app/'));
+gulp.task('test-scripts', scriptTask.browserifyModuleTask(['tests.js'], 'test/'));
 gulp.task('less', assetsTask.cssTask('./src/**/*.less', 'app.css'));
 gulp.task('html', assetsTask.htmlTask('src/**/*.html'));
 
@@ -47,7 +44,10 @@ gulp.task('livereload', function () {
     tinylr.listen(reloadPort);
 });
 gulp.task('build-re-load', function (callback) {
-    gulpSequence('html', 'scripts', 'less', 're-load')(callback);
+    gulpSequence('html', 'scripts', 'test-scripts', 'less', 're-load')(callback);
+});
+gulp.task('build-test-re-load', function (callback) {
+    gulpSequence('test-scripts', 're-load')(callback);
 });
 gulp.task('re-load', function () {
     console.log('Re-loading...');
@@ -64,7 +64,8 @@ function notifyLiveReload() {
 }
 gulp.task('watch', function () {
     gulp.watch(['src/**/*.*'], ['build-re-load']);
+    gulp.watch(['test/**/*.*'], ['build-test-re-load']);
 });
 
 
-gulp.task('default', gulpSequence('clean', ['third-party', 'html', 'scripts', 'less'], 'livereload', 'express-server', 'watch'));
+gulp.task('default', gulpSequence('clean', ['third-party', 'html', 'scripts', 'less', 'test-libs', 'test-scripts'], 'livereload', 'express-server', 'watch'));
