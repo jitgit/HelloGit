@@ -5,6 +5,8 @@ var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var rename = require('gulp-rename');
 var es = require('event-stream');
+var concat = require('gulp-concat');
+
 //var streamify = require('gulp-streamify');
 
 module.exports = function (gulp) {
@@ -28,6 +30,19 @@ module.exports = function (gulp) {
                 });
                 // create a merged stream
                 return es.merge.apply(null, tasks);
+            }
+        },
+        thirdPartyDependencyTask: function (thridPartLibs) {
+            return function () {
+                return gulp.src(thridPartLibs)
+                    .pipe(concat('external-libs.js'))
+                    .pipe(gulp.dest('./build/'));
+            }
+        },
+        testLibs: function (testingLibs) {
+            return function () {
+                return gulp.src(testingLibs)
+                    .pipe(gulp.dest('./build/test-libs/jasmine'));
             }
         }
     }
