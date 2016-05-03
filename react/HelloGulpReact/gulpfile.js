@@ -17,7 +17,7 @@ var THIRD_PARTY_LIBS = ['bower_components/jquery/dist/jquery.js'];
 gulp.task('third-party', scriptTask.thirdPartyDependencyTask(THIRD_PARTY_LIBS));
 gulp.task('test-libs', scriptTask.testLibs(['src/sdk/jasmine-2.4.1/**.**']));
 // Basic usage
-gulp.task('scripts', scriptTask.browserifyModuleTask(['main-1.js', 'main-2.js', 'counter/counter.js', 'todo/TodoApp.js'], 'src/scripts/app/'));
+gulp.task('scripts', scriptTask.browserifyModuleTask([ 'todo/TodoApp.js'], 'src/scripts/app/'));
 gulp.task('test-scripts', scriptTask.browserifyModuleTask(['tests.js'], 'test/'));
 gulp.task('less', assetsTask.cssTask('./src/**/*.less', 'app.css'));
 gulp.task('html', assetsTask.htmlTask('src/**/*.html'));
@@ -44,7 +44,7 @@ gulp.task('livereload', function () {
     tinylr.listen(reloadPort);
 });
 gulp.task('build-re-load', function (callback) {
-    gulpSequence('html', 'scripts', 'test-scripts', 'less', 're-load')(callback);
+    gulpSequence('html', 'scripts', 'less', 're-load')(callback);
 });
 gulp.task('build-test-re-load', function (callback) {
     gulpSequence('test-scripts', 're-load')(callback);
