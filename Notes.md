@@ -11,3 +11,7 @@ https://community.nitrous.io/tutorials/setting-up-gulp-with-livereload-sass-and-
 react +meteor
 
 https://github.com/ryanswapp
+
+
+react + backbone
+https://github.com/WRidder/react-spa
