@@ -15,3 +15,7 @@ https://github.com/ryanswapp
 
 react + backbone
 https://github.com/WRidder/react-spa
+
+
+Unit test 
+https://jaredtong.com/2016/01/08/how-to-set-up-mocha-chai-sinon-karma-browserify-istanbul-codecov/
