@@ -19,3 +19,7 @@ https://github.com/WRidder/react-spa
 
 Unit test 
 https://jaredtong.com/2016/01/08/how-to-set-up-mocha-chai-sinon-karma-browserify-istanbul-codecov/
+
+
+Nice book on Javascript Design patterns
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
