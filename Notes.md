@@ -27,3 +27,7 @@ https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternja
 Style guides
 JS - https://github.com/airbnb/javascript
 CSS - https://github.com/airbnb/css
+
+
+
+https://jobs.citi.com/job/sydney/product-manager-platforms-and-data-services-vice-president-sydney/287/99532167888
